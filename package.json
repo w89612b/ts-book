@@ -1,0 +1,23 @@
+{
+  "name": "ts-book",
+  "version": "1.0.0",
+  "description": "ts 学习",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "eslint"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/w89612b/ts-book.git"
+  },
+  "author": "wubo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/w89612b/ts-book/issues"
+  },
+  "homepage": "https://github.com/w89612b/ts-book#readme",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-typescript": "^3.1.7"
+  }
+}
