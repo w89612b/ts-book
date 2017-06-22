@@ -1,52 +1,54 @@
 {
-  "name": "ts-book",
-  "version": "1.0.0",
-  "description": "ts 学习",
-  "main": "gulpfile.js",
-  "scripts": {
-    "test": "eslint"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/w89612b/ts-book.git"
-  },
-  "author": "wubo",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/w89612b/ts-book/issues"
-  },
-  "homepage": "https://github.com/w89612b/ts-book#readme",
-  "devDependencies": {
-    "browser-sync": "^2.18.12",
-    "browserify": "^14.4.0",
-    "chai": "^4.0.2",
-    "gulp": "^3.9.1",
-    "gulp-karma": "0.0.5",
-    "gulp-sourcemaps": "^2.6.0",
-    "gulp-tslint": "^8.1.1",
-    "gulp-typescript": "^3.1.7",
-    "gulp-uglify": "^3.0.0",
-    "karma": "^1.7.0",
-    "karma-chai": "^0.1.0",
-    "karma-coverage": "^1.1.1",
-    "karma-mocha": "^1.3.0",
-    "karma-phantomjs-launcher": "^1.0.4",
-    "karma-sinon": "^1.0.5",
-    "mocha": "^3.4.2",
-    "run-sequence": "^1.2.2",
-    "sinon": "^2.3.5",
-    "tslint": "^5.4.3",
-    "typescript": "^2.3.4",
-    "vinyl-buffer": "^1.0.0",
-    "vinyl-source-stream": "^1.1.0",
-    "vinyl-transform": "^1.0.0"
-  },
-  "dependencies": {
-    "animate.css": "^3.5.2",
-    "bootstrap": "^3.3.7",
-    "datatables": "^1.10.13",
-    "handlebars": "^4.0.10",
-    "jquery": "^3.2.1",
-    "q": "^1.5.0"
-  }
+    "name": "ts-book",
+    "version": "1.0.0",
+    "description": "ts 学习",
+    "main": "gulpfile.js",
+    "scripts": {
+        "test": "eslint"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/w89612b/ts-book.git"
+    },
+    "author": "wubo",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/w89612b/ts-book/issues"
+    },
+    "homepage": "https://github.com/w89612b/ts-book#readme",
+    "devDependencies": {
+        "browser-sync": "^2.18.12",
+        "browserify": "^14.4.0",
+        "chai": "^4.0.2",
+        "gulp": "^3.9.1",
+        "gulp-flatten": "^0.3.1",
+        "gulp-karma": "0.0.5",
+        "gulp-rename": "^1.2.2",
+        "gulp-sourcemaps": "^2.6.0",
+        "gulp-tslint": "^8.1.1",
+        "gulp-typescript": "^3.1.7",
+        "gulp-uglify": "^3.0.0",
+        "karma": "^1.7.0",
+        "karma-chai": "^0.1.0",
+        "karma-coverage": "^1.1.1",
+        "karma-mocha": "^1.3.0",
+        "karma-phantomjs-launcher": "^1.0.4",
+        "karma-sinon": "^1.0.5",
+        "mocha": "^3.4.2",
+        "run-sequence": "^1.2.2",
+        "sinon": "^2.3.5",
+        "tslint": "^5.4.3",
+        "typescript": "^2.3.4",
+        "vinyl-buffer": "^1.0.0",
+        "vinyl-source-stream": "^1.1.0",
+        "vinyl-transform": "^1.0.0"
+    },
+    "dependencies": {
+        "animate.css": "^3.5.2",
+        "bootstrap": "^3.3.7",
+        "datatables": "^1.10.13",
+        "handlebars": "^4.0.10",
+        "jquery": "^3.2.1",
+        "q": "^1.5.0"
+    }
 }

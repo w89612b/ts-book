@@ -3,11 +3,15 @@ var gulp = require('gulp'),
     ts = require('gulp-typescript'),
     browserify = require('browserify'),
     transform = require('vinyl-transform'),
+    source = require('vinyl-source-stream'),
+    buffer = require('vinyl-buffer'),
+    rename = require('gulp-rename'),
     uglify = require('gulp-uglify'),
     sourcemaps = require('gulp-sourcemaps'),
     karma = require('gulp-karma'),
     runSequence = require('run-sequence'),
-    browserSync = require('browser-sync');
+    browserSync = require('browser-sync'),
+    flatten = require('gulp-flatten');
 //******************************************************************************
 //* LINT
 //******************************************************************************
@@ -50,7 +54,9 @@ gulp.task('tsc-test', function() {
 gulp.task("build", function(cb) {
     runSequence("lint", "build-source", "build-test", cb);
 });
-
+//******************************************************************************
+//* BUNDLE
+//******************************************************************************
 /*browserified 函数会把一个普通的Node.js流转换为一个gulp流*/
 var browserified = transform(function(filename) {
     var b = browserify({ entries: filename, debug: true });
@@ -59,11 +65,16 @@ var browserified = transform(function(filename) {
 
 /*合并文件 压缩代码 生成源代码Map 输出生产环境文件   任务*/
 gulp.task('bundle-js', function() {
-    return gulp.src('./temp/js/main.js')
-        .pipe(browserified) // 查找依赖
-        .pipe(sourcemaps.init({ loadMaps: true })) // 开启map收集
+    var b = browserify({ entries: './temp/js/framework.js', debug: true });
+
+    return b.bundle()
+        //.pipe(sourcemaps.init()) // 开启map收集
+        .pipe(source('bundle.js'))
+        .pipe(buffer())
+        //.pipe(sourcemaps.write()) // 输出map文件
+        .pipe(gulp.dest('./dist/js/')) // 输出生产文件
+        .pipe(rename({ suffix: '.min' })) // 重命名
         .pipe(uglify()) // 压缩代码
-        .pipe(sourcemaps.write('./')) // 输出map文件
         .pipe(gulp.dest('./dist/js/')) // 输出生产文件
 });
 
@@ -73,8 +84,9 @@ gulp.task('bundle-test', function() {
         .pipe(browserified)
         .pipe(gulp.dest('./dist/test/'))
 });
-
-/*单元测试任务*/
+//******************************************************************************
+//* 单元测试任务
+//******************************************************************************
 gulp.task('karma', function(cb) {
     gulp.src('./dist/js/**/**.test.js')
         .pipe(karma({
@@ -88,7 +100,6 @@ gulp.task('karma', function(cb) {
         })
 });
 
-/*跨设备测试同步*/
 /*合并任务*/
 gulp.task('bundle', function(cb) {
     runSequence('build', ['bundle-js', 'bundle-test'], cb);
@@ -99,6 +110,26 @@ gulp.task('test', function(cb) {
     runSequence('bundle', ['karma'], cb);
 })
 
+//******************************************************************************
+//* 复制文件
+//******************************************************************************
+gulp.task('copy', function() {
+    gulp.src([
+            'node_modules/jquery/dist/{jquery,jquery.min}.js',
+            'node_modules/bootstrap/dist/**',
+            'node_modules/q/q.js',
+            'node_modules/animate.css/{animate,animate.min}.css',
+            'node_modules/handlebars/dist/handlebars.min.js',
+            'node_modules/highcharts/scripts/highcharts.js'
+        ])
+        .pipe(flatten({ includeParents: [1, 1] })) // 移动指定文件，并且去掉源路径
+        .pipe(gulp.dest('./dist/lib'));
+});
+
+
+//******************************************************************************
+//* 跨设备测试同步
+//******************************************************************************
 /*跨设备测试同步实现*/
 gulp.task('browser-sync', ['test'], function() {
     browserSync({
@@ -114,6 +145,8 @@ gulp.task('browser-sync', ['test'], function() {
         "./index.html"
     ], [browserSync.reload])
 });
+
+
 
 /*控制任务执行顺序*/
 gulp.task('default', function(cb) {
