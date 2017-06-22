@@ -1,0 +1,24 @@
+{
+  "name": "ts-book",
+  "description": "ts 学习",
+  "main": "gulpfile.js",
+  "authors": [
+    "wubo"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/w89612b/ts-book",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "^3.2.1"
+  },
+  "devDependencies": {
+    "jasmine-core": "jasmine#^2.6.4"
+  }
+}
